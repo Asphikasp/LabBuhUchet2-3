@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Работник ID:</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+<div th:insert="blocks/header :: header"></div>
+
+<div>
+    <h1>Список начислений работника</h1>
+    <div>
+        <p th:text="'id:' + ${worker.id} + ' Имя ' + ${worker.name} + ' Сумма зарплаты ' + ${worker.payment}"></p>
+        <br>
+        <form th:action="'/worker/' + ${worker.id} + '/edit'" method="get">
+            <button th:href="'/worker/' + ${worker.id} + '/edit'" type="submit">Редактировать</button>
+        </form>
+        <br>
+        <form th:action="'/worker/' + ${worker.id} + '/deleteWorker'" method="post">
+            <button th:href="'/worker/' + ${worker.id} + '/deleteWorker'" type="submit">Удалить работника</button>
+        </form>
+        <br>
+        <form th:action="'/worker/' + ${worker.id} + '/deleteHistory'" method="post">
+            <input type="text" name="date" placeholder="Введите дату зарплаты">
+            <button th:href="'/worker/' + ${worker.id} + '/deleteHistory'" type="submit">Удалить зарплату</button>
+        </form>
+        <br>
+    </div>
+    <div th:each="el : ${paymentHistories}">
+        <p th:text="'Сумма: ' + ${el.value} + ' Дата получения:' + ${el.date}"></p><br>
+    </div>
+</div>
+
+</body>
+</html>

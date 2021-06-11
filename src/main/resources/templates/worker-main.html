@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Работник ID:</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+<div th:insert="blocks/header :: header"></div>
+
+<div>
+    <h1>Меню работников</h1>
+    <div>
+        <form action="/worker" method="post">
+            <button type="submit">PAYDAY$</button>
+        </form>
+    </div>
+    <div th:each="el : ${workers}">
+        <p th:text="'id:' + ${el.id} + ' ' + ${el.name} + ' ' + ${el.payment}"></p>
+        <a th:href="'/worker/' + ${el.id}">Подробнее</a>
+    </div>
+</div>
+
+</body>
+</html>
